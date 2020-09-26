@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="d1">张三</div>
+<input type="button" value="按钮1" onclick="change1()"/>
+
+<div id="app">
+    {{message}}
+    <p>{{film}}</p>
+    <input type="button" value="按钮2" @click="change2">
+</div>
+
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript">
+    //js函数定义 function 函数名(){[return 值];}
+    function change1() {
+        document.getElementById("d1").innerHTML="hello world";
+    }
+
+    //创建vue实例对象
+    let vue = new Vue({
+        el : "#app",
+        data:{
+            message : '李四',
+            film :'八佰'
+        },
+        methods:{
+            change2:function () {
+                this.message = 'hello';
+            }
+        }
+    })
+</script>
+</body>
+</html>
