@@ -80,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		            <li class="yc_col6">
                         {{film.fyear}}
 		            </li>
-		            <li class="yc_col7"><img src="film_images" width="100"></li>
+		            <li class="yc_col7"><img :src="film.fimage" width="100"></li>
 		            <li class="yc_col8"><a href="javascript:void(0)" @click="deleteFilm(film.fid)">删除</a></li>
 	        	</ul>
 
@@ -104,7 +104,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li><label>上映时间:</label><input type="text" v-model="fdate"/></li>
                 <li><label>电影时长:</label><input type="text" v-model="flength"/></li>
                 <li><label>制品地区:</label><input type="text" v-model="farea"/></li>
-		 		<li><label>电影图片:</label><input type="file" v-model="fimage"/></li>
+		 		<li><label>电影图片:</label><input type="text" v-model="fimage"/></li>
 		 		<li><label>电影描述:</label><textarea v-model="fdis"></textarea></li>
 		 	</ul>
 		 	<div class="btn">
@@ -187,6 +187,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			director:'',
 			actors:'',
 			fimage:'',
+			farea:'',
 			flength:'',
 			fdis:'',
 			film:{}//存储添加电影信息
