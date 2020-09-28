@@ -20,6 +20,7 @@ public class UserServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         //从前端传入一个op属性  根据他所传递的值判断是什么操作
         String op = request.getParameter("op");
+        System.out.println("op:"+op);
         if ("register".equals(op)) {
             //注册
             doRegister(request, response);
@@ -28,6 +29,8 @@ public class UserServlet extends HttpServlet {
             doLogin(request, response);
         } else if ("checkEmail".equals(op)) {
             doCheckEmail(request, response);
+        } else if ("addMessage".equals(op)) {
+            doAddMessage(request,response);
         }
     }
 
@@ -102,6 +105,27 @@ public class UserServlet extends HttpServlet {
             throwables.printStackTrace();
         }
 
+    }
+
+    protected void doAddMessage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String uname = request.getParameter("uname");
+        String email = request.getParameter("email");
+        String message = request.getParameter("message");
+
+        try {
+            int result = UserDao.updateMessage(uname, email, message);
+            //返回json格式字符串给外界  {"code":1}
+            Map<String, Object> jsonMap = new HashMap<String, Object>();
+            jsonMap.put("code", result);
+            //转为json格式的字符串
+            //创建gson对象
+            Gson gson = new Gson();
+            String info = gson.toJson(jsonMap);
+            System.out.println("info:"+info);
+            response.getWriter().print(info);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

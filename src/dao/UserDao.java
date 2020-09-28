@@ -101,12 +101,31 @@ public class UserDao {
         return map;
     }
 
+    /**
+     *根据用户名和邮箱留言
+     */
+    public static int updateMessage(String uname,String email,String message) throws SQLException {
+        int result = 0;
+        Connection conn = DbUtil.getConn();
+        String sql = "update tb_user set message=? where uname=? and email=?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setObject(1,message);
+        ps.setObject(2,uname);
+        ps.setObject(3,email);
+
+        result = ps.executeUpdate();
+        DbUtil.close();
+        return result;
+    }
+
     public static void main(String[] args) throws SQLException {
         /*int result = register("李四","lisi@qq.com","123");
         System.out.println(result);*/
         /*int result = updatePwd(2,"123");
         System.out.println(result);*/
-        Map<String, Object> map = login("lisi@qq.com", "12");
-        System.out.println(map);
+        /*Map<String, Object> map = login("lisi@qq.com", "12");
+        System.out.println(map);*/
+        int result = updateMessage("fanfei","fanfei@qq.com","hello world");
+        System.out.println(result);
     }
 }
