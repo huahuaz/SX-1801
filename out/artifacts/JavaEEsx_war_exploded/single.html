@@ -14,7 +14,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='http://fonts.useso.com/css?family=Roboto+Condensed:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<div class="container">
+<div id="d1" class="container">
 	<div class="container_wrap">
 		<div class="header_top">
 		    <div class="col-sm-3 logo"><a href="index.html"><img src="images/logo.png" alt=""/></a></div>
@@ -38,13 +38,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="clearfix"> </div>
 	      </div>
-	   <div class="content">
+	   <div class="content" >
       	   <div class="movie_top">
       	         <div class="col-md-9 movie_box">
                         <div class="grid images_3_of_2">
-                        	<div class="movie_image">
+                        	<div class="movie_image" v-for="(film,index) in films" v-if="index==0">
                                 <span class="movie_rating">5.0</span>
-                                <img src="images/single.jpg" class="img-responsive" alt=""/>
+                                <img :src="film.fimage" class="img-responsive" alt="" width="300"/>
                             </div>
                             <div class="movie_rate">
                             	<div class="rating_desc"><p>您的评分:</p></div>
@@ -69,17 +69,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						  	   <div class="clearfix"> </div>
                             </div>
                         </div>
-                        <div class="desc1 span_3_of_2">
-                        	<p class="movie_option"><strong>制片地区: </strong>美国</p>
-                        	<p class="movie_option"><strong>出品时间: </strong>2017</p>
-                        	<p class="movie_option"><strong>类型: </strong>动作、剧情、惊悚、犯罪</p>
-                        	<p class="movie_option"><strong>上映时间: </strong>2017-04-14</p>
-                        	<p class="movie_option"><strong>导演: </strong><a href="#">F·加里·格雷</a></p>
-                        	<p class="movie_option"><strong>演员: </strong>范·迪塞尔、道恩·强森、查理兹·塞隆、杰森·斯坦森、米歇尔·罗德里格兹、娜塔莉·艾玛努埃尔、库尔特·拉塞尔、斯科特·伊斯特伍德、泰瑞斯·吉布森、卢达·克里斯</p>
+                        <div class="desc1 span_3_of_2" v-for="(film,index) in films" v-if="index==0">
+                        	<p class="movie_option" @click='getIndex(index)'><strong>制片地区: </strong>{{film.farea}}</p>
+                        	<p class="movie_option"><strong>出品时间: </strong>{{film.fyear}}</p>
+                        	<p class="movie_option"><strong>类型: </strong>{{film.ftype}}</p>
+                        	<p class="movie_option"><strong>上映时间: </strong>{{film.fdate}}</p>
+                        	<p class="movie_option"><strong>导演: </strong><a href="#">{{film.director}}</a></p>
+                        	<p class="movie_option"><strong>演员: </strong>{{film.actors}}</p>
                             <div class="down_btn"><a class="btn1" href="#"><span> </span>Download</a></div>
                          </div>
                         <div class="clearfix"> </div>
-                        <p class="m_4">多米尼克·托莱多（范·迪塞尔饰）与莱蒂（米歇尔·罗德里格兹饰）共度蜜月，布莱恩与米娅退出了赛车界，这支曾环游世界的顶级飞车家族队伍的生活正渐趋平淡。然而，一位神秘女子塞弗（查理兹·塞隆饰）的出现，她引诱多米尼克·托莱多走上犯罪道路，令整个队伍卷入信任与背叛的危机，生死患难的情义面临瓦解崩溃，前所未有的灾难考验着最个飞车家族 [3]  。</p>
+                        <p class="m_4">{{film.fdis}}</p>
 		                <form method="post" action="contact-post.html">
 							<div class="to">
 		                     	<input type="text" class="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}">
@@ -236,6 +236,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
   </footer>
-</div>		
+</div>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/axios.min.js"></script>
+<script type="text/javascript" src="js/qs.js"></script>
+<script type="text/javascript">
+	let mv = new Vue({
+		el:"#d1",
+		data:{
+			films:{//电影信息
+
+			},
+			fname:'',
+			ftype:'',
+			fdate:'',
+			fyear:'',
+			director:'',
+			actors:'',
+			fimage:'',
+			farea:'',
+			flength:'',
+			fdis:'',
+			film:{}//存储添加电影信息
+		},
+		//挂在前执行的代码
+		mounted:function () {
+			axios.all([findAll()]).then(
+					axios.spread((fn1)=>{
+						this.films = fn1.data;
+					}));
+		},
+		methods:{
+			getIndex(index){
+				console.log(index);
+			}
+		}
+	});
+
+	//查看所有电影信息
+	function findAll() {
+		return axios.get("film.action?op=findAll");
+	}
+</script>
 </body>
 </html>
