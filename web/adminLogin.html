@@ -151,6 +151,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     "apwd": this.apwd, "op": 'login'
                 })).then((result) => {
                     if (result.data.code == 1) {
+                        alert('登录成功')
                         window.location.href = 'movie.html';
                     } else {
                         alert('管理员登录失败');
