@@ -98,7 +98,7 @@ public class FilmDao {
                 "中国大陆","D:\\Users\\82427\\IdeaProjects\\JavaEEsx\\web\\film_images\\babai.png");*/
         /*List<Map<String,Object>> l = f.findAll();
         System.out.println(l);*/
-        Map<String,Object> m = f.findByFid("1");
+        Map<String,Object> m = f.findByFid("14");
         System.out.println(m);
     }
 }

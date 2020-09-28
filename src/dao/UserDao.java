@@ -106,7 +106,7 @@ public class UserDao {
         System.out.println(result);*/
         /*int result = updatePwd(2,"123");
         System.out.println(result);*/
-        Map<String, Object> map = login("lisi@@qq.com", "123");
+        Map<String, Object> map = login("lisi@qq.com", "12");
         System.out.println(map);
     }
 }
