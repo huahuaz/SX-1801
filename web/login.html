@@ -19,7 +19,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		    <div class="col-sm-3 logo"><a href="index.html"><img src="images/logo.png" alt=""/></a></div>
 		    <div class="col-sm-6 nav">
 			  <ul>
-				 <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="comic"><a href="movie.html"> </a></span></li>
+				 <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="addFilm"><a href="add.html"> </a></span></li>
 				 <li><span class="simptip-position-bottom simptip-movable" data-tooltip="movie"><a href="movie.html"> </a> </span></li>
 				 <li><span class="simptip-position-bottom simptip-movable" data-tooltip="video"><a href="movie.html"> </a></span></li>
 				 <li><span class="simptip-position-bottom simptip-movable" data-tooltip="game"><a href="movie.html"> </a></span></li>
@@ -50,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<form>
 				  <div>
 					<span>邮箱<label>*</label></span>
-					<input type="text" v-model="email">
+					<input type="text" v-model="uemail"> 
 				  </div>
 				  <div>
 					<span>密码<label>*</label></span>
@@ -124,13 +124,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 let app =new Vue({
 	el:"#yc_login",
 	data:{
-		email:"",
+		uemail:"",
 		upwd:""
 	},
 	methods:{
 		login:function(){
-			axios.post("user.action",qs.stringify({"email":this.email,
-				"upwd":this.upwd,"op":'login'})).then((result)=>{
+			axios.post("user.action",qs.stringify({email:this.uemail,
+				upwd:this.upwd,op:'login'})).then((result)=>{
 				if(result.data.code==1){
 					window.location.href='movie.html';
 				}else{

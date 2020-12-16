@@ -2,6 +2,31 @@
 <html>
 <head>
 	<title>Movie</title>
+	<style type="text/css">
+		.pagenation{
+			margin-right:50px;
+			width: 400px;
+			height: 40px;
+			background: E1E6F6;
+		}
+
+		.li{
+
+			display:block;
+			float:left;
+			list-style: none;
+			margin-top: 10px;
+		}
+
+		#yc_movie{
+			background: white;
+		}
+
+		a{
+			text-decoration: none;
+		}
+
+	</style>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="Movie_store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -11,16 +36,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- start plugins -->
 	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-	<link href='http://fonts.useso.com/css?family=Roboto+Condensed:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
 </head>
 <body>
+<div id=""></div>
 <div class="container">
-	<div class="container_wrap">
+	<div class="container_wrap" >
 		<div class="header_top">
 			<div class="col-sm-3 logo"><a href="index.html"><img src="images/logo.png" alt=""/></a></div>
 			<div class="col-sm-6 nav">
 				<ul>
-					<li> <span class="simptip-position-bottom simptip-movable" data-tooltip="comic"><a href="movie.html"> </a></span></li>
+					<li> <span class="simptip-position-bottom simptip-movable" data-tooltip="addFilm"><a href="add.html"> </a></span></li>
 					<li><span class="simptip-position-bottom simptip-movable" data-tooltip="movie"><a href="movie.html"> </a> </span></li>
 					<li><span class="simptip-position-bottom simptip-movable" data-tooltip="video"><a href="movie.html"> </a></span></li>
 					<li><span class="simptip-position-bottom simptip-movable" data-tooltip="game"><a href="movie.html"> </a></span></li>
@@ -39,209 +64,69 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="clearfix"> </div>
 		</div>
 		<div class="content">
-			<h1 class="m_3">热映电影</h1>
-				<div class="movie_top">
-					<div class="col-md-9 movie_box">
+			<h2 class="m_3">热映电影</h1>
+
+				<div class="movie_top" id="">
+
+					<div class="col-md-9 movie_box" id="yc_movie" >
 						<!-- Movie variant with time -->
-						<div class="movie movie-test movie-test-dark movie-test-left">
-							<div class="movie__images">
-								<a href="single.html" class="movie-beta__link">
-									<img alt="" src="images/1.jpg" class="img-responsive" alt=""/>
-								</a>
-							</div>
-							<div class="movie__info">
-								<a href="single.html" class="movie__title">速度与激情8 (2017)  </a>
-								<p class="movie__time">80 分钟</p>
-								<p class="movie__option"><a href="single.html">范·迪塞尔</a> | <a href="single.html">道恩·强森</a> | <a href="single.html">查理兹·塞隆</a></p>
-								<ul class="list_6">
-									<li><i class="icon1"> </i><p>2,548</p></li>
-									<li><i class="icon3"> </i><p>546</p></li>
-									<li>评分: &nbsp;&nbsp;<p><img src="images/rating1.png" alt=""></p></li>
-									<div class="clearfix"> </div>
-								</ul>
-							</div>
-							<div class="clearfix"> </div>
+
+						<!-- 分页栏 -->
+						<div class="pagenation">
+							<ul>
+								<li v-for="i in total" class="li">
+									<a href="javascript:void(0)" style="color:#666666;text-decoration:none;" class="active" @click="findByPage(i)" v-if="i==page">&nbsp;&nbsp;第{{i}}页|&nbsp;&nbsp;</a>
+
+									<a href="javascript:void(0)" style="color:#666666;text-decoration:none;" class="active" @click="findByPage(i)" v-else>&nbsp;&nbsp;第{{i}}页&nbsp;&nbsp;|</a>
+								</li>
+							</ul>
 						</div>
-						<!-- Movie variant with time -->
-						<!-- Movie variant with time -->
-						<div class="movie movie-test movie-test-dark movie-test-left">
-							<div class="movie__images">
-								<a href="single.html" class="movie-beta__link">
-									<img alt="" src="images/2.jpg" class="img-responsive" alt=""/>
-								</a>
+
+						<div class="movie movie-test movie-test-dark movie-test-left" v-for="film in films">
+
+
+
+
+							<div id="div">
+								<div class="movie__images">
+									<a :href="'single.html#'+film.fid" class="movie-beta__link">
+										<img alt="" :src="film.fimage" class="img-responsive" alt=""/>
+									</a>
+								</div>
+								<div class="movie__info">
+									<a :href="'single.html#'+film.fid" class="movie__title">{{film.fname}} </a>
+									<p class="movie__time">{{film.flength}}分钟</p>
+									<p class="movie__option"><a href="single.html">{{film.actors}}</a> </p>
+									<ul class="list_6">
+										<li><i class="icon1"> </i><p>2,548</p></li>
+										<li><i class="icon3"> </i><p>546</p></li>
+										<li>评分: &nbsp;&nbsp;<p><img src="images/rating1.png" alt=""></p></li>
+										<div class="clearfix"> </div>
+									</ul>
+								</div>
+								<div class="clearfix"> </div>
 							</div>
-							<div class="movie__info">
-								<a href="single.html" class="movie__title">速度与激情8 (2017)  </a>
-								<p class="movie__time">80 分钟</p>
-								<p class="movie__option"><a href="single.html">范·迪塞尔</a> | <a href="single.html">道恩·强森</a> | <a href="single.html">查理兹·塞隆</a></p>
-								<ul class="list_6">
-									<li><i class="icon1"> </i><p>2,548</p></li>
-									<li><i class="icon3"> </i><p>546</p></li>
-									<li>评分: &nbsp;&nbsp;<p><img src="images/rating1.png" alt=""></p></li>
-									<div class="clearfix"> </div>
-								</ul>
-							</div>
-							<div class="clearfix"> </div>
+
+
+
 						</div>
-						<div class="movie movie-test movie-test-light movie-test-right">
-							<div class="movie__images">
-								<a href="single.html" class="movie-beta__link">
-									<img alt="" src="images/3.jpg" class="img-responsive" alt=""/>
-								</a>
-							</div>
-							<div class="movie__info">
-								<a href="single.html" class="movie__title">速度与激情8 (2017)  </a>
-								<p class="movie__time">80 分钟</p>
-								<p class="movie__option"><a href="single.html">范·迪塞尔</a> | <a href="single.html">道恩·强森</a> | <a href="single.html">查理兹·塞隆</a></p>
-								<ul class="list_6">
-									<li><i class="icon1"> </i><p>2,548</p></li>
-									<li><i class="icon3"> </i><p>546</p></li>
-									<li>评分: &nbsp;&nbsp;<p><img src="images/rating1.png" alt=""></p></li>
-									<div class="clearfix"> </div>
-								</ul>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="movie movie-test movie-test-light movie-test-right">
-							<div class="movie__images">
-								<a href="single.html" class="movie-beta__link">
-									<img alt="" src="images/4.jpg" class="img-responsive" alt=""/>
-								</a>
-							</div>
-							<div class="movie__info">
-								<a href="single.html" class="movie__title">速度与激情8 (2017)  </a>
-								<p class="movie__time">80 分钟</p>
-								<p class="movie__option"><a href="single.html">范·迪塞尔</a> | <a href="single.html">道恩·强森</a> | <a href="single.html">查理兹·塞隆</a></p>
-								<ul class="list_6">
-									<li><i class="icon1"> </i><p>2,548</p></li>
-									<li><i class="icon3"> </i><p>546</p></li>
-									<li>评分: &nbsp;&nbsp;<p><img src="images/rating1.png" alt=""></p></li>
-									<div class="clearfix"> </div>
-								</ul>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="movie movie-test movie-test-dark movie-test-left">
-							<div class="movie__images">
-								<a href="single.html" class="movie-beta__link">
-									<img alt="" src="images/5.jpg" class="img-responsive" alt=""/>
-								</a>
-							</div>
-							<div class="movie__info">
-								<a href="single.html" class="movie__title">速度与激情8 (2017)  </a>
-								<p class="movie__time">80 分钟</p>
-								<p class="movie__option"><a href="single.html">范·迪塞尔</a> | <a href="single.html">道恩·强森</a> | <a href="single.html">查理兹·塞隆</a></p>
-								<ul class="list_6">
-									<li><i class="icon1"> </i><p>2,548</p></li>
-									<li><i class="icon3"> </i><p>546</p></li>
-									<li>评分: &nbsp;&nbsp;<p><img src="images/rating1.png" alt=""></p></li>
-									<div class="clearfix"> </div>
-								</ul>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="movie movie-test movie-test-dark movie-test-left">
-							<div class="movie__images">
-								<a href="single.html" class="movie-beta__link">
-									<img alt="" src="images/6.jpg" class="img-responsive" alt=""/>
-								</a>
-							</div>
-							<div class="movie__info">
-								<a href="single.html" class="movie__title">速度与激情8 (2017)  </a>
-								<p class="movie__time">80 分钟</p>
-								<p class="movie__option"><a href="single.html">范·迪塞尔</a> | <a href="single.html">道恩·强森</a> | <a href="single.html">查理兹·塞隆</a></p>
-								<ul class="list_6">
-									<li><i class="icon1"> </i><p>2,548</p></li>
-									<li><i class="icon3"> </i><p>546</p></li>
-									<li>评分: &nbsp;&nbsp;<p><img src="images/rating1.png" alt=""></p></li>
-									<div class="clearfix"> </div>
-								</ul>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="movie movie-test movie-test-light movie-test-right">
-							<div class="movie__images">
-								<a href="single.html" class="movie-beta__link">
-									<img alt="" src="images/7.jpg" class="img-responsive" alt=""/>
-								</a>
-							</div>
-							<div class="movie__info">
-								<a href="single.html" class="movie__title">速度与激情8 (2017)  </a>
-								<p class="movie__time">80 分钟</p>
-								<p class="movie__option"><a href="single.html">范·迪塞尔</a> | <a href="single.html">道恩·强森</a> | <a href="single.html">查理兹·塞隆</a></p>
-								<ul class="list_6">
-									<li><i class="icon1"> </i><p>2,548</p></li>
-									<li><i class="icon3"> </i><p>546</p></li>
-									<li>评分: &nbsp;&nbsp;<p><img src="images/rating1.png" alt=""></p></li>
-									<div class="clearfix"> </div>
-								</ul>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="movie movie-test movie-test-light movie-test-right">
-							<div class="movie__images">
-								<a href="single.html" class="movie-beta__link">
-									<img alt="" src="images/8.jpg" class="img-responsive" alt=""/>
-								</a>
-							</div>
-							<div class="movie__info">
-								<a href="single.html" class="movie__title">速度与激情8 (2017)  </a>
-								<p class="movie__time">80 分钟</p>
-								<p class="movie__option"><a href="single.html">范·迪塞尔</a> | <a href="single.html">道恩·强森</a> | <a href="single.html">查理兹·塞隆</a></p>
-								<ul class="list_6">
-									<li><i class="icon1"> </i><p>2,548</p></li>
-									<li><i class="icon3"> </i><p>546</p></li>
-									<li>评分: &nbsp;&nbsp;<p><img src="images/rating1.png" alt=""></p></li>
-									<div class="clearfix"> </div>
-								</ul>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="clearfix"> </div>
-						<!-- Movie variant with time -->
+
 					</div>
-					<div class="col-md-3">
-						<div class="movie_img"><div class="grid_2">
-							<img src="images/pic6.jpg" class="img-responsive" alt="">
-							<div class="caption1">
-								<ul class="list_5 list_7">
-									<li><i class="icon5"> </i><p>3,548</p></li>
-								</ul>
-								<i class="icon4 icon6 icon7"> </i>
-								<p class="m_3">美国队长</p>
-							</div>
-						</div>
-						</div>
-						<div class="grid_2 col_1">
-							<img src="images/pic2.jpg" class="img-responsive" alt="">
-							<div class="caption1">
-								<ul class="list_3 list_7">
-									<li><i class="icon5"> </i><p>3,548</p></li>
-								</ul>
-								<i class="icon4 icon7"> </i>
-								<p class="m_3">美国队长</p>
-							</div>
-						</div>
-						<div class="grid_2 col_1">
-							<img src="images/pic9.jpg" class="img-responsive" alt="">
-							<div class="caption1">
-								<ul class="list_3 list_7">
-									<li><i class="icon5"> </i><p>3,548</p></li>
-								</ul>
-								<i class="icon4 icon7"> </i>
-								<p class="m_3">美国队长</p>
-							</div>
-						</div>
-					</div>
-					<div class="clearfix"> </div>
 				</div>
-				<h1 class="recent">最近浏览</h1>
+
+
+
+
+
+
+
+				<h1 class="recent">最近浏览</h3>
 					<ul id="flexiselDemo3">
-						<li><img src="images/1.jpg" class="img-responsive"/><div class="grid-flex"><a href="#">Syenergy 2mm</a><p>22.10.2014 | 14:40</p></div></li>
-						<li><img src="images/2.jpg" class="img-responsive"/><div class="grid-flex"><a href="#">Surf Yoke</a><p>22.01.2015 | 14:40</p></div></li>
-						<li><img src="images/3.jpg" class="img-responsive"/><div class="grid-flex"><a href="#">Salty Daiz</a><p>22.10.2013 | 14:40</p></div></li>
-						<li><img src="images/4.jpg" class="img-responsive"/><div class="grid-flex"><a href="#">Cheeky Zane</a><p>22.10.2014 | 14:40</p></div></li>
-						<li><img src="images/5.jpg" class="img-responsive"/><div class="grid-flex"><a href="#">Synergy</a><p>22.10.2013 | 14:40</p></div></li>
+						<li><img src="images/1.jpg" class="img-responsive"/><div class="grid-flex"><a href="#"></a><p></p></div></li>
+						<li><img src="images/2.jpg" class="img-responsive"/><div class="grid-flex"><a href="#"></a><p></p></div></li>
+						<li><img src="images/3.jpg" class="img-responsive"/><div class="grid-flex"><a href="#"></a><p></p></div></li>
+						<li><img src="images/4.jpg" class="img-responsive"/><div class="grid-flex"><a href="#"></a><p></p></div></li>
+						<li><img src="images/5.jpg" class="img-responsive"/><div class="grid-flex"><a href="#"></a><p></p></div></li>
 					</ul>
 					<script type="text/javascript">
 						$(window).load(function() {
@@ -272,11 +157,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</script>
 					<script type="text/javascript" src="js/jquery.flexisel.js"></script>
 					<ul id="flexiselDemo1">
-						<li><img src="images/8.jpg" class="img-responsive"/><div class="grid-flex"><a href="#">Syenergy 2mm</a><p>22.10.2014 | 14:40</p></div></li>
-						<li><img src="images/7.jpg" class="img-responsive"/><div class="grid-flex"><a href="#">Surf Yoke</a><p>22.01.2015 | 14:40</p></div></li>
-						<li><img src="images/6.jpg" class="img-responsive"/><div class="grid-flex"><a href="#">Salty Daiz</a><p>22.10.2013 | 14:40</p></div></li>
-						<li><img src="images/1.jpg" class="img-responsive"/><div class="grid-flex"><a href="#">Cheeky Zane</a><p>22.10.2014 | 14:40</p></div></li>
-						<li><img src="images/2.jpg" class="img-responsive"/><div class="grid-flex"><a href="#">Synergy</a><p>22.10.2013 | 14:40</p></div></li>
+						<li><img src="images/8.jpg" class="img-responsive"/><div class="grid-flex"><a href="#"></a><p></p></div></li>
+						<li><img src="images/7.jpg" class="img-responsive"/><div class="grid-flex"><a href="#"></a><p></p></div></li>
+						<li><img src="images/6.jpg" class="img-responsive"/><div class="grid-flex"><a href="#"></a><p></p></div></li>
+						<li><img src="images/1.jpg" class="img-responsive"/><div class="grid-flex"><a href="#"></a><p></p></div></li>
+						<li><img src="images/2.jpg" class="img-responsive"/><div class="grid-flex"><a href="#"></a><p></p></div></li>
 					</ul>
 					<script type="text/javascript">
 						$(window).load(function() {
@@ -360,5 +245,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</footer>
 </div>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/axios.min.js"></script>
+<script type="text/javascript" src="js/qs.js"></script>
+<script type="text/javascript">
+
+	var tno;
+	var rows=4;//每页几条数据
+	var page=1;//默认第一页
+
+
+	var vue=new Vue({
+		el:'#yc_movie',
+		data:{
+			films:{},
+			total:0,
+			page:1
+		},
+
+		mounted:function(){
+			axios.get("film.action",{
+				params:{pageNum:page,pageSize:rows,op:'findByPage'}
+			}).then(result=>{
+				this.films=result.data.films;
+				console.log(result.data);
+				this.total=Math.ceil(result.data.rows/rows );
+
+			})
+
+		},
+
+		methods:{
+			findByPage:function(idx){
+				this.page=idx;//当前页码数
+				axios({
+					url:'film.action?op=findByPage',
+					method:'get',
+					params:{pageNum:this.page,pageSize:rows}///////
+				}).then(result=>{
+
+					this.films=result.data.films;
+					console.log(this.films);
+				});
+			}
+		}
+
+	})
+
+
+
+
+
+</script>
+
+
 </body>
 </html>
