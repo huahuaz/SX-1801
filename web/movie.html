@@ -36,6 +36,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- start plugins -->
 	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/axios.min.js"></script>
 </head>
 <body>
 <div id=""></div>
@@ -244,6 +246,72 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</footer>
+
+	<table cellspacing="0" cellpadding="3" width="1142px" align="center" border="0" style="font-size: 10px;position: fixed;bottom: 5px;">
+		<tbody>
+		<tr>
+			<td valign="top" align="middle" height="20">
+				<table cellspacing="1" cellpadding="1" width="100%" border="0">
+					<tbody>
+					<tr bgcolor="#333" height="20">
+						<td colspan="0">
+							<div align="left" style="color: #ffffff">
+								友情链接：
+							</div>
+						</td>
+					</tr>
+					<tr bgcolor="#333" height="20">
+						<td colspan="0">
+							<table id="links" width="100%" border="0" cellpadding="3" cellspacing="0">
+								<tbody>
+								<tr>
+									<td align="center" v-for="l in list"><a :href="l.href" title="l.name" target="_blank" style="color: #ffffff">{{l.name}}</a>
+									</td>
+									<td align="center"><a href="http://www.dushe.net" title="毒蛇影院" target="_blank" style="color: #ffffff">毒蛇影院</a>
+									</td>
+									<td align="center"><a href="http://www.1yy.cc" title="第一影院" target="_blank" style="color: #ffffff">第一影院</a>
+									</td>
+								</tr>
+								<tr>
+<!--									<td align="center"><a href="http://www.dushe.net" title="毒蛇影院" target="_blank">毒蛇影院</a>-->
+<!--									</td>-->
+<!--									<td align="center"><a href="http://www.1yy.cc" title="第一影院" target="_blank">第一影院</a>-->
+<!--									</td>-->
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+
+	<script type="text/javascript">
+		var v2 = new Vue({
+			el:"#links",
+			data:{
+				list:[]
+			},
+			created(){
+				axios.get("queryLinks.s").then(res=>{
+					this.list = res.data;
+				})
+			}
+		});
+	</script>
 </div>
 <script type="text/javascript" src="js/vue.js"></script>
 <script type="text/javascript" src="js/axios.min.js"></script>

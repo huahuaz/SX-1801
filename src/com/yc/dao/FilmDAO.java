@@ -153,7 +153,6 @@ public class FilmDAO {
 	
 	/**
 	 * ∑÷“≥≤È—Ø
-	 * @param f
 	 * @param pageNum
 	 * @param pageSize
 	 * @return

@@ -36,8 +36,7 @@ public class LoginFilter implements Filter{
 		
 		if(session.getAttribute("admin")==null){
 			//根据项目名	路径/		服务器的根目录（webApps）
-			response.sendRedirect("/JavaEEsx/adminLogin.html");
-			System.out.println("===========");
+			response.sendRedirect("adminLogin.html");
 		}else{
 			arg2.doFilter(request,response);
 		}
